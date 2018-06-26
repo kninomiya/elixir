@@ -3,30 +3,35 @@ defmodule MyApp.SampleCLI do
 
   name "mycli"
   description "My CLI"
-  long_description ~s"""
-  This is my long description
-  """
+
+  def calc(price, taxRate) do
+    {intPrice, ""} = Integer.parse(price)
+    {floatTaxRate, ""} = Float.parse(taxRate)
+
+    intPrice * floatTaxRate
+  end
+  def createResultMessage(cost) do
+    "合計: #{cost}"
+  end
 
   option :verbose, count: true, aliases: [:v]
-
-  command :hello do
-    aliases [:hi]
-    description "Greets the user"
-    long_description """
-    Gives a nice a warm greeting to whoever would listen
-    """
-
-    argument :name
-    option :from, help: "the sender of hello"
+  command :calculation do
+    aliases [:cl]
+    description "計算する"
+    argument :item
+    option :price, help: "Price of item. e.g. 1000, 10000, etc"
+    option :taxRate, help: "tax rate e.g. 1.08"
 
     run context do
-      if context.verbose > 0 do
-        IO.puts("Running hello command")
+      IO.puts("#{context.item}!")
+      if taxRate = context[:taxRate] do
+        IO.puts("taxRate: #{taxRate} : ")
       end
-      if from = context[:from] do
-        IO.write("#{from} says: ")
+      if price = context[:price] do
+        IO.puts("price: #{price}")
       end
-      IO.puts("Hello #{context.name}!")
+   
+      calc(price, taxRate) |> createResultMessage |> IO.puts
     end
   end
 end
