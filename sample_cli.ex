@@ -15,11 +15,8 @@ defmodule MyApp.SampleCLI do
     run context do
       
       if (Calculation.validate(context) === :ok) do
-         IO.puts("#{context.item}!")
-         Calculation.run(context[:price], context[:taxRate])
-      else
 
-         IO.puts("Invalid price or taxRate")
+         Calculation.run(context)
       end
     end
   end
