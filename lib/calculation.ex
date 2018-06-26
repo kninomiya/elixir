@@ -2,7 +2,6 @@ defmodule Calculation do
   import Number.Delimit;
 
   def run(context) do
-#    getTaxPrice(context[:price], context[:taxRate]) |> (&createResultMessage(context[:item], &1)).() |> IO.puts
     getTaxPrice(context[:price], context[:taxRate]) |> createResultMessage(context) |> IO.puts
   end
   def validate(context) do
@@ -12,7 +11,7 @@ defmodule Calculation do
     if (result.valid?) do
        :ok
     else
-       result.data |> IO.puts
+#       result.data |> IO.puts
        :ng
     end
   end
@@ -21,7 +20,7 @@ defmodule Calculation do
     { intPrice, "" } = Integer.parse(price)
     { floatTaxRate, "" } = Float.parse(taxRate)
 
-    Float.ceil(intPrice * floatTaxRate)
+    intPrice * floatTaxRate |> Float.ceil |> Kernel.trunc
   end
 
   def createResultMessage(cost, context) do
