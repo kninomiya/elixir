@@ -4,16 +4,6 @@ defmodule MyApp.SampleCLI do
   name "mycli"
   description "My CLI"
 
-  def calc(price, taxRate) do
-    {intPrice, ""} = Integer.parse(price)
-    {floatTaxRate, ""} = Float.parse(taxRate)
-
-    intPrice * floatTaxRate
-  end
-  def createResultMessage(cost) do
-    "合計: #{cost}"
-  end
-
   option :verbose, count: true, aliases: [:v]
   command :calculation do
     aliases [:cl]
@@ -23,15 +13,14 @@ defmodule MyApp.SampleCLI do
     option :taxRate, help: "tax rate e.g. 1.08"
 
     run context do
-      IO.puts("#{context.item}!")
-      if taxRate = context[:taxRate] do
-        IO.puts("taxRate: #{taxRate} : ")
+      
+      if (Calculation.validate(context) === :ok) do
+         IO.puts("#{context.item}!")
+         Calculation.run(context[:price], context[:taxRate])
+      else
+
+         IO.puts("Invalid price or taxRate")
       end
-      if price = context[:price] do
-        IO.puts("price: #{price}")
-      end
-   
-      calc(price, taxRate) |> createResultMessage |> IO.puts
     end
   end
 end

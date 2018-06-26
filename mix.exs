@@ -6,7 +6,8 @@ defmodule ExCLI.Mixfile.Sample do
   def deps do
     [
        {:ex_cli, "~> 0.1.0"},
-       {:excoveralls, "~> 0.8", only: :test}
+       {:excoveralls, "~> 0.8", only: :test},
+       {:ecto, "~> 2.1"}
     ]
   end
 
