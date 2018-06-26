@@ -4,7 +4,10 @@ defmodule ExCLI.Mixfile.Sample do
   @version "0.1.4"
 
   def deps do
-    [{:ex_cli, "~> 0.1.0"}]
+    [
+       {:ex_cli, "~> 0.1.0"},
+       {:excoveralls, "~> 0.8", only: :test}
+    ]
   end
 
   def project do
@@ -17,6 +20,8 @@ defmodule ExCLI.Mixfile.Sample do
      start_permanent: Mix.env == :prod,
      package: package(),
      test_coverage: [tool: ExCoveralls],
+     test_pattern: "*_test.ex",
+     preferred_cli_env: ["coveralls": :test, "coveralls.detail": :test, "coveralls.post": :test, "coveralls.html": :test],
      deps: deps(),
      docs: [source_ref: "#{@version}", extras: ["README.md"], main: "readme"]]
   end
