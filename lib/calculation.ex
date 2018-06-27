@@ -1,3 +1,4 @@
+
 defmodule Calculation do
   import Number.Delimit;
 
@@ -11,11 +12,28 @@ defmodule Calculation do
     if (result.valid?) do
        :ok
     else
-#       result.data |> IO.puts
+       result |> getErrorMessage |> IO.puts
        :ng
     end
   end
-
+  def parse(key, value) do
+    "#{key}: #{value}"
+  end
+  def getErrorMessage(validationResult) do
+    errors = Ecto.Changeset.traverse_errors(
+        validationResult, 
+        fn {msg, opts} 
+	-> Enum.reduce(opts, msg, 
+			fn {key, value}, 
+				acc -> String.replace(acc, "%{#{key}}", to_string(value)) 
+			end) 
+	end)
+    Enum.map(errors, fn({key, value}) -> parse(key,value) end) |> Enum.join("\n")
+  end
+  def getFieldErrorMessage(field, constraints) do
+    IO.inspect constraints
+    field
+  end
   def getTaxPrice(price, taxRate) do
     { intPrice, "" } = Integer.parse(price)
     { floatTaxRate, "" } = Float.parse(taxRate)
