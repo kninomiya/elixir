@@ -13,3 +13,14 @@ mix run sample_cli.ex cl Juice --price 2000 --taxRate 1.05
 ```
 MIX_ENV=test mix compile && mix test && mix coveralls
 ```
+
+## Example.ex実行
+
+```
+```
+
+## Httpclient
+
+```
+vi mix.exs # add dependencies httpoison
+```

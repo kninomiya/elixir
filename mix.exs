@@ -8,7 +8,8 @@ defmodule ExCLI.Mixfile.Sample do
        {:ex_cli, "~> 0.1.0"},
        {:excoveralls, "~> 0.8", only: :test},
        {:ecto, "~> 2.2"},
-       {:number, "~> 0.5.7"}
+       {:number, "~> 0.5.7"},
+       {:httpoison, "~> 1.2.0"}
     ]
   end
 
