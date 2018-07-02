@@ -9,7 +9,8 @@ defmodule ExCLI.Mixfile.Sample do
        {:excoveralls, "~> 0.8", only: :test},
        {:ecto, "~> 2.2"},
        {:number, "~> 0.5.7"},
-       {:httpoison, "~> 1.2.0"}
+       {:httpoison, "~> 1.2.0"},
+       {:mojiex, github: "enpedasi/mojiex"}
     ]
   end
 
@@ -42,7 +43,7 @@ defmodule ExCLI.Mixfile.Sample do
     applications(:all) ++ [:hackney]
   end
   defp applications(_all) do
-    [:logger]
+    [:logger, :httpoison]
   end
 
   defp package do
