@@ -1,6 +1,12 @@
 # 使い方
 
-## ジュースのお値段を計算する
+## elixir: Hello World
+
+```
+$ elixir -r Greeting.ex -r Example.ex -e 'IO.gets("Name: ") |> Sayings.Example.greeting |> IO.puts'
+```
+
+## mix: ジュースの値段
 
 ```bash
 $ mix deps.get
@@ -8,7 +14,7 @@ $ mix compile
 $ mix run sample_cli.ex cl Juice --price 2000 --taxRate 1.05
 ```
 
-## 動物あてクイズ
+## iex: 動物あてクイズ
 
 ```bash
 $ mix compile
