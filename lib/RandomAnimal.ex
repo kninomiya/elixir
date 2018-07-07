@@ -1,4 +1,8 @@
 defmodule RandomAnimal do
+  @moduledoc """
+  RandomAnimal
+  """
+
   alias Lesson.Animals, as: Animals
   @randset_size 4
 
@@ -38,7 +42,7 @@ defmodule RandomAnimal do
     :ets.insert(:randomset_registry, {setId, randomset})
   end
 
-  defp generateRandomIndex(maxCount, index) do
+  defp generateRandomIndex(maxCount) do
     (:rand.uniform() * maxCount) |> Kernel.trunc
   end
 
@@ -47,7 +51,7 @@ defmodule RandomAnimal do
   """
   def generateSet(setId) do
     maxCount = Animals.count()
-    randset = Enum.map(1..@randset_size, fn (index) -> (maxCount |> generateRandomIndex(index)) end)
+    randset = Enum.map(1..@randset_size, fn (_) -> (maxCount |> generateRandomIndex) end)
     saveRandomSet(setId, randset)
   end
 
