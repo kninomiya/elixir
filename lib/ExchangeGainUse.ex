@@ -1,18 +1,27 @@
 defmodule Lesson.ExchangeGainUse do
-  @expected_rate 111
   @usd_yen_trading_unit 10000
 
   alias Lesson.ExchangeGain
+  defp getPosBids(), do: [{110.843, 8}, {111.151, 8}, {111.526, 2}, {112.501, 4} ]
 
   def main() do
-    
-    IO.puts("米ドル円売, 決済レート110での収益期待値")
-    Enum.reduce([
-      ExchangeGain.calculate(:pos_bid, @expected_rate, 110.843, 8, @usd_yen_trading_unit),
-      ExchangeGain.calculate(:pos_bid, @expected_rate, 111.151, 8, @usd_yen_trading_unit),
-      ExchangeGain.calculate(:pos_bid, @expected_rate, 111.526, 2, @usd_yen_trading_unit),
-      ExchangeGain.calculate(:pos_bid, @expected_rate, 112.478, 2, @usd_yen_trading_unit),
-      ExchangeGain.calculate(:pos_bid, @expected_rate, 112.482, 2, @usd_yen_trading_unit)
-    ], fn (gain, sum) -> (sum + gain) end) |> IO.puts
+    posBids = getPosBids()
+
+    IO.puts("米ドル円売建, 1ドル111円で一括買決済した場合収益(期待値)計算")
+    estimateBulkAsk(posBids, 111.0)
+
+    IO.puts("米ドル円売建, 1ドル110円で一括買決済した場合収益(期待値)計算")
+    estimateBulkAsk(posBids, 110.0)
+
+    IO.puts("米ドル円売建, 1ドル109円で一括買決済した場合収益(期待値)計算")
+    estimateBulkAsk(posBids, 109.0)
+  end
+
+  defp estimateBulkAsk(posBids, expected_rate) do
+
+    posBids
+    |> Enum.map(fn pos -> ExchangeGain.calculate(:pos_bid, expected_rate, elem(pos, 0), elem(pos, 1), @usd_yen_trading_unit) end)
+    |> Enum.reduce(fn (gain, sum) -> (sum + gain) end)
+    |> IO.puts
   end
 end
