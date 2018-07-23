@@ -24,7 +24,7 @@ defmodule Lesson.Animals do
   キャッシュ領域(ETS)に動物リストを保存する
   """
   def saveAnimals(body) do
-     animals = (body |> String.split("\n"))
+     animals = (body |> String.trim() |> String.split("\n"))
     :ets.insert(:animals_registry, {"animals", animals})
   end
 
