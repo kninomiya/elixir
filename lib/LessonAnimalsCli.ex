@@ -9,7 +9,7 @@ defmodule Lesson.AnimalsCli do
 
   def main() do
     init()
-    "動物の名前を入れてね: " |> IO.gets |> ApiDriver.searchImage |> Showcase.open
+    "動物の名前を入れてね: " |> IO.gets |> Animals.search |> ApiDriver.searchImage |> Showcase.open
   end
 
   @randset_size 4

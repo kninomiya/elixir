@@ -23,6 +23,19 @@ iex> IO.gets("動物の名前を入れてね: ") |> Lesson.Animals.search |> IO.
 iex> (Ctrl + \を押してiexを終了)
 ```
 
+## iex:　動物画像検索
+
+```
+vi lib/LessonApiDriver.ex # Custom Search APIのCSE ID, API KEYを設定
+defmodule Lesson.ApiDriver do
+    @cx "/*CSE ID*/"
+    @apikey "/*API KEY*/"
+
+$ iex -S mix
+
+iex (1)> Lesson.AnimalsCli.main
+```
+
 ## Unit test
 
 ```bash
@@ -59,3 +72,5 @@ $ mix deps.get # install httpoison
 $ vi mix.exs # add deps mojiex {:mojiex, github: "enpedasi/mojiex"},
 $ mix deps.get # install mojiex
 ```
+
+

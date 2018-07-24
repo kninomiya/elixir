@@ -1,12 +1,15 @@
 defmodule Lesson.ApiDriver do
+    @cx "/*CSE ID*/"
+    @apikey "/*API KEY*/"
+    def searchImage(nil), do: []
     def searchImage(keyword) do
         tesla = GoogleApi.CustomSearch.V1.Connection.new
         case GoogleApi.CustomSearch.V1.Api.Cse.search_cse_list(
             tesla,
             keyword,
             [
-                {:cx, "013595435806448571340:qrcz-ciehnm"},
-                {:key, "AIzaSyBDBmhYu2qeGV_Gx1TaVvfKQkhzyHib3o0"},
+                {:cx, @cx },
+                {:key, @apikey },
                 {:search_type, "image"},
                 {:lr, "lang_ja"}, {:num, "2"}
             ]
