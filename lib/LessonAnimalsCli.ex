@@ -4,6 +4,14 @@ defmodule Lesson.AnimalsCli do
   """
 
   alias Lesson.Animals, as: Animals
+  alias Lesson.Showcase, as: Showcase
+  alias Lesson.ApiDriver, as: ApiDriver
+
+  def main() do
+    init()
+    "動物の名前を入れてね: " |> IO.gets |> ApiDriver.searchImage |> Showcase.open
+  end
+
   @randset_size 4
 
   @doc """
@@ -19,13 +27,6 @@ defmodule Lesson.AnimalsCli do
     rescue
       e in ArgumentError -> ""
     end
-  end
-  def main() do
-    init()
-
-    # TODO: 完成させる
-    Animals.search("アイアイ") |> IO.puts
-
   end
 
   @doc """
