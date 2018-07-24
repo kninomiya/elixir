@@ -45,13 +45,10 @@ defmodule Lesson.Animals do
 
   ```
   iex> Lesson.Animals.search("アイアイ")
-  "いいね, アイアイ"
+  "アイアイ"
   
   iex> Lesson.Animals.search("ねず")
-  "ネズ, おしいっ"
-
-  iex> Lesson.Animals.search("ルカク")
-  "いないみたい..."
+  nil
   ```
   """
 
@@ -61,9 +58,8 @@ defmodule Lesson.Animals do
     animals = readAnimals()
 
     cond do
-      Enum.any?(animals, &( &1 === animalName ) ) -> "いいね, #{animalName}"
-      Enum.any?(animals, &( String.contains?(&1, animalName) ) ) -> "#{animalName}, おしいっ"
-      true -> "いないみたい..."
+      Enum.any?(animals, &( &1 === animalName ) ) -> animalName
+      true -> nil
     end
   end
 

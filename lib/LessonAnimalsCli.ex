@@ -1,6 +1,6 @@
-defmodule RandomAnimal do
+defmodule Lesson.AnimalsCli do
   @moduledoc """
-  RandomAnimal
+  Lesson.AnimalsCli
   """
 
   alias Lesson.Animals, as: Animals
@@ -13,15 +13,18 @@ defmodule RandomAnimal do
     Animals.initRegistry()
     :ets.new(:randomset_registry, [:set, :protected, :named_table])
   end
-
+  def init() do
+    try do
+      initRegistry()
+    rescue
+      e in ArgumentError -> ""
+    end
+  end
   def main() do
-    initRegistry()
+    init()
 
-    generateSet("a12345")
-    showSet("a12345")
-
-    generateSet("a12346")
-    readAnimalSet("a12346")
+    # TODO: 完成させる
+    Animals.search("アイアイ") |> IO.puts
 
   end
 
@@ -38,7 +41,6 @@ defmodule RandomAnimal do
   end
 
   defp saveRandomSet(setId, randomset) do
-
     :ets.insert(:randomset_registry, {setId, randomset})
   end
 

@@ -12,6 +12,7 @@ defmodule ExCLI.Mixfile.Sample do
        {:httpoison, "~> 1.2.0"},
        {:mojiex, github: "enpedasi/mojiex"},
        {:google_api_storage, "~> 0.0.2"},
+       {:google_api_custom_search, "~> 0.0.1"},
        {:goth, ">= 0.9.0"}
     ]
   end
