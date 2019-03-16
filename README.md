@@ -79,3 +79,4 @@ $ mix deps.get # install mojiex
 $ vi mix.exs # add deps mojiex {::google_api_custom_search,"~> 0.0.1"}, {:goth, ">= 0.9.0"}
 $ mix deps.get # install google_api_custom_search, goth
 ```
+# elixir
