@@ -24,3 +24,11 @@ input |> Ngram.ngram(2) |> IO.inspect
 
 input |> String.split |> Ngram.ngram(2) |> IO.inspect
 # => [["I", "am"], ["am", "an"], ["an", "NLPer"]]
+
+# a = "I am an NLPer"
+# b = String.codepoints(a)
+# ["I", " ", "a", "m", " ", "a", "n", " ", "N", "L", "P", "e", "r"]
+# a1 = String.split(a)
+# ["I", "am", "an", "NLPer"]
+# b1 = Enum.chunk(c,2,1,[])
+# [["I", "am"], ["am", "an"], ["an", "NLPer"], ["NLPer"]]
